@@ -9,16 +9,16 @@ const usuarioGet = async(req, res = response) =>{
     //const {nombre} = req.query //Desestructuración
 
     //Consultar todos los usuarios
-    const usuarios = await Usuario.find()
+    const usuario = await Usuario.find()
 
     res.json({  //Respuesta en JSON
-        usuarios
+        usuario
     })   
 }
 
 const usuarioPost = async(req, res) => {
     let mensaje = "Inserción exitosa"
-    const body = req.query
+    const body = req.body
     try {
         const usuario = new Usuario(body)
         await usuario.save() //Inserta en la colección
@@ -33,7 +33,7 @@ const usuarioPost = async(req, res) => {
 
 const usuarioPut = async(req, res) => {
 
-    const {_id, nombre, password, rol, estado} = req.query
+    const {_id, nombre, password, rol, estado} = req.body
 
     let mensaje = "Modificación exitosa"
 
@@ -53,7 +53,7 @@ const usuarioPut = async(req, res) => {
 }
 
 const usuarioDelete = async (req, res) => {
-    const {_id} = req.query
+    const {_id} = req.body
     let mensaje = ''
 
     try{

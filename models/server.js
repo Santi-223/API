@@ -10,6 +10,7 @@ class Server{
         this.app = express()
         this.port = process.env.PORT //Capturando variable puerto
         this.usuarioPath = '/api/usuario' //Ruta pública
+        this.middlewares();
         this.conectarDB()
         this.routes()
     }
@@ -18,6 +19,13 @@ class Server{
         this.app.listen(this.port, () => {
             console.log(`Escuchando por el puerto ${this.port}`)
         })
+    }
+
+    middlewares() {
+        this.app.use(cookieParser());
+        this.app.use(express.static(__dirname + "/public"));
+        this.app.use( cors() );
+        this.app.use(bodyParser.json())
     }
 
     routes(){
