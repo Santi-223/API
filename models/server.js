@@ -24,7 +24,8 @@ class Server{
     middlewares() {
         this.app.use(cookieParser());
         this.app.use(express.static(__dirname + "/public"));
-        this.app.use( cors() );
+        this.app.use( cors({
+  origin: 'http://localhost:60694'}) );
         this.app.use(bodyParser.json())
     }
 
